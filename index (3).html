@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RoflGarden</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Анімований фон */
+    .hero {
+      position: relative;
+      background: linear-gradient(-45deg, #1a1a1a, #004d00, #0066cc, #660000);
+      background-size: 400% 400%;
+      animation: gradientMove 15s ease infinite;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Навбар */
+    .navbar {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 50px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+    }
+    .menu li a {
+      font-size: 1rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .menu li a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: #0f0;
+      transition: width 0.3s;
+    }
+    .menu li a:hover::after {
+      width: 100%;
+    }
+
+    /* Текст у герої */
+    .hero-text {
+      position: relative;
+      z-index: 2;
+      padding: 0 50px 100px;
+      max-width: 700px;
+    }
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00cc66;
+      color: #fff;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #00e67a;
+      transform: translateY(-3px);
+    }
+
+    /* Секції */
+    .section {
+      padding: 80px 50px;
+    }
+    #projects {
+      background: linear-gradient(135deg, #004d00, #00b300);
+    }
+    #about {
+      background: linear-gradient(135deg, #003366, #0066cc);
+    }
+    #contact {
+      background: linear-gradient(135deg, #660000, #cc0000);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #0d0d0d;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* Анімація появи */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        padding: 15px;
+      }
+      .menu {
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+      }
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      .hero-text p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="home">
+    <nav class="navbar">
+      <div class="logo">RoflGarden</div>
+      <ul class="menu">
+        <li><a href="#home">Головна</a></li>
+        <li><a href="#projects">Проєкти</a></li>
+        <li><a href="#about">Про нас</a></li>
+        <li><a href="#contact">Контакти</a></li>
+      </ul>
+    </nav>
+    <div class="hero-text fade-in">
+      <h1>Смішно, красиво, зелено</h1>
+      <p>Створюємо мемні сади майбутнього</p>
+      <a href="#projects" class="btn">Наші проєкти</a>
+    </div>
+  </header>
+
+  <section id="projects" class="section fade-in">
+    <h2>Наші проєкти</h2>
+    <p>Ми створюємо незвичайні зелені простори з мемами, арт-об’єктами та технологіями.</p>
+  </section>
+
+  <section id="about" class="section fade-in">
+    <h2>Про нас</h2>
+    <p>RoflGarden — це спільнота людей, які люблять природу та жарти. Ми робимо світ веселішим і зеленішим.</p>
+  </section>
+
+  <section id="contact" class="section fade-in">
+    <h2>Контакти</h2>
+    <p>Email: example@email.com</p>
+    <p>Телефон: +38 (099) 123-45-67</p>
+  </section>
+
+  <footer>
+    <p>© 2025 RoflGarden | Всі права захищені</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const fadeElements = document.querySelectorAll(".fade-in");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+          }
+        });
+      }, { threshold: 0.1 });
+      fadeElements.forEach((el) => observer.observe(el));
+    });
+  </script>
+</body>
+</html>
